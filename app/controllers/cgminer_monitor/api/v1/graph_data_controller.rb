@@ -26,7 +26,7 @@ module CgminerMonitor
               summary[:created_at].to_i,
 
               summary[:results].collect do |miner_result|
-                miner_result.first[:ghs_5s] rescue 0
+                miner_result.first[:ghs_5s].to_f rescue 0
               end.sum.round(2),
 
               summary[:results].collect do |miner_result|
@@ -85,7 +85,7 @@ module CgminerMonitor
 
               [
                 summary[:created_at].to_i,
-                (miner_summary[:ghs_5s] rescue 0).round(2),
+                (miner_summary[:ghs_5s].to_f rescue 0).round(2),
                 (miner_summary[:ghs_av] rescue 0).round(2),
                 (miner_summary[:'device_hardware%'] / 100 rescue 0).round(6),
                 (miner_summary[:'device_rejected%'] / 100 rescue 0).round(6),
